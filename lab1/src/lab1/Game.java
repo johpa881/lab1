@@ -72,7 +72,6 @@ public class Game {
 	    locations.add(asite);
 	    locations.add(ctspawn);
 	    locations.add(bsite);
-	    
 	 
     }
 

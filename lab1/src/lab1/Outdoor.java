@@ -22,7 +22,6 @@ public class Outdoor extends Location {
 	@Override
 	public void setNext(String mapKey, Location position) {
 		this.paths.put(mapKey, position);
-		
 	}
 	
 	//returnar en plats som vägen man skickar in leder till
