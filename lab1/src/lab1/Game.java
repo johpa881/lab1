@@ -6,14 +6,14 @@ public class Game {
 	
 	//deklarerar variabler
     private Scanner keyboard; 
-    private ArrayList<Location> locations;
+    private ArrayList<Location> world;
     private Player player;
     
     public Game() {
     	
     	//skapar objekt
 	    keyboard = new Scanner(System.in);
-	    locations = new ArrayList<>();
+	    world = new ArrayList<>();
 	    
 	    //skapar platser
 	    Location longdoors = new Room("Longdoors", "Teamflashes and molotovs are flying in.","long description");
@@ -63,16 +63,15 @@ public class Game {
 	    bsite.setNext("right", ctspawn);
 	    
 	    //lägger till platser i "världen"
-	    locations.add(longdoors);
-	    locations.add(tspawn);
-	    locations.add(outsidetunnels);
-	    locations.add(along);
-	    locations.add(middle);
-	    locations.add(tunnels);
-	    locations.add(asite);
-	    locations.add(ctspawn);
-	    locations.add(bsite);
-	 
+	    world.add(longdoors);
+	    world.add(tspawn);
+	    world.add(outsidetunnels);
+	    world.add(along);
+	    world.add(middle);
+	    world.add(tunnels);
+	    world.add(asite);
+	    world.add(ctspawn);
+	    world.add(bsite);
     }
 
     public void run() {
@@ -82,14 +81,13 @@ public class Game {
 	
         System.out.println("Hello comrade! Welcome to the Dust2!\nI'm Vadim. What is your name? My friend.");
         name = keyboard.nextLine();
-        player = new Player(name, locations.get(1));
+        player = new Player(name, world.get(1));
         System.out.println("Hello " + name + ", welcome to this magical world of preposterous terror!\n*a distant explosion*\nComrade " + name + ", you are needed here....\nYou can move around by typing forward/backward/right/left."
         		+ "\nYou will have to learn more commands as you play the game!"
         		+ "\n(Hint: there is a command \"help\").");
   
        
-        while (true) {
-	    
+        while (true) {	    
             player.getLocation().describeYourself();
             System.out.println("What do you want to do?");
             command = keyboard.nextLine();

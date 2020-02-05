@@ -55,7 +55,6 @@ public class Player {
 	
 	//låter spelaren byta position via en väg
 	public void moveTo(String command) {
-		//this.position = this.position.getLocation(command);
 		if (getLocation().checkPath(command)) {
 			setLocation(getLocation().getNext(command));
 		}

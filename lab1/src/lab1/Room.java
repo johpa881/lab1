@@ -1,8 +1,7 @@
 package lab1;
 
-
-
 public class Room extends Location {
+	
 	//konstruktor
 	public Room(String name, String description_short, String description_long) {
 		super(name, description_short, description_long);
@@ -10,6 +9,11 @@ public class Room extends Location {
 		
 	public void doCommand() {
 		
+	}
+	
+	@Override
+	public void doCommand(String command) {
+		// TODO Auto-generated method stub
 	}
 	
 	//skriver ut namn och beskrivning
@@ -22,14 +26,12 @@ public class Room extends Location {
 	//skapar vägar
 	@Override
 	public void setNext(String mapKey, Location position) {
-		this.paths.put(mapKey, position);
-		
+		this.paths.put(mapKey, position);	
 	}
 	
 	//returnar en plats som vägen man skickar in leder till
 	@Override
 	public Location getNext(String mapKey) {
-		
 		return this.paths.get(mapKey);
 	}
 	

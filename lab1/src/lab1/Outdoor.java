@@ -1,6 +1,5 @@
 package lab1;
 
-
 public class Outdoor extends Location {
 	//konstruktor
 	public Outdoor(String name, String description_short, String description_long) {
@@ -8,6 +7,12 @@ public class Outdoor extends Location {
 	}
 		
 	public void doCommand() {
+		
+	}
+	
+	@Override
+	public void doCommand(String command) {
+		// TODO Auto-generated method stub
 		
 	}
 	
