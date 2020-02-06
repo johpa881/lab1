@@ -8,26 +8,41 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> world;
     private Player player;
+    private static ArrayList<String> weather;
     
     public Game() {
     	
-    	//skapar objekt
+    	//skapar objekt'
 	    keyboard = new Scanner(System.in);
 	    world = new ArrayList<>();
+	    weather = new ArrayList<String>();
 	    
 	    //skapar platser
-	    Location longdoors = new Room("Longdoors", "Teamflashes and molotovs are flying in.","long description");
-	    Location tspawn = new Buyzone("Tspawn", "Buy your weapons here.","long description");
-	    Location outsidetunnels = new Outdoor("Outside tunnels", "There is a distant scream and you can make out RUUUSH B, COMRADE!","long description");
-	    Location along = new Outdoor("Long", "You see a a AWP:er rushing back after missing his entry shoot.","long description");
-	    Location middle = new Outdoor("Middle", "Complete madness.","long description");
-	    Location tunnels = new Room("Tunnels", "It's dark and you're scared.","long description");
-	    Location asite = new Objective("Asite", "You open your backpack and hear the usual tic...tock...tic..","long description");
-	    Location ctspawn = new Room("CTspawn", "You see evidence that the CT:s been here.","long description");
+	    Location longdoors = new Room("Longdoors", "There's is blood on the walls.","The legendary Loongdors has taken many lives. The shootouts have been of the most horrific ones mankind has ever seen.\nYou hear your friend Vadim" + 
+	    		"screaming at the top of his lungs.\n       *I FLASH LONG FOR YOU COMRADE*\nYou start to question the decision to run long....\nMaybe you should go middle instead.... ", 10);
+	    
+	    Location tspawn = new Buyzone("Tspawn", "There is pistols on the ground, a destinct smell of premium vodka and cheap cigarettes.","*You hear Vadim*\nComrade, I drop AK for you, you go open site for me.\nYou feel terrifed, " + 
+	    		"maybe this killing stuff is not for you. But you're to far in now and you remember your father Boris last words to you just before he died.\nSTOP SHAKING THE LADDER!!!\nYou feel encurged to go on.");
+	    
+	    Location outsidetunnels = new Outdoor("Outside tunnels", "Not to many souls around here.","You feel the urge to just keep going no matter what trough smokes and nades. \n*There is nothing more powerful than a B rush.*\n" + 
+	    		"Except an Apache helicopter. An Apache helicopter has machine guns AND missiles. It is an unbelievably impressive complement of weaponry, an absolute death machine.");
+	    
+	    Location along = new Outdoor("Long", "You smell the smell of burnt corpses.","You made up your mind. You'll bait Vadim, your life is more important than his. Then you take a moment to self reflect.\n" + 
+	    		"Are anyones life more important than anothers? Or is that just a social construct the elite class of the world made up to controll the rest.\nThe revolution starts now, communism or death.");
+	    
+	    Location middle = new Outdoor("Middle", "You see complete chaos.","*You hear gunfire in the distance*\n With alot of options you feel overwhelmed. Time is of the essence.");
+	    
+	    Location tunnels = new Room("Tunnels", "It's dark and smells like western spies. You feel discusted.","The innervoice in your head says that you should peek Bsite, but is that a good idea?\n" + 
+	    "You start to question your own reality, you think why am I doing this? What's the point...", 15);
+	    
+	    Location asite = new Objective("Asite", "This would be a good place to deliver something.","There is boxes with the smell of gasoline, you hear Vadim\n*Slaps top of boxes* This badboy could blow better than a Moscaw glasblower.");
+	    
+	    Location ctspawn = new Room("CTspawn", "This place is cursed.","", 7);
+	    
 	    Location bsite = new Objective("Bsite", "The rush finally worked.","long description");
 	    
 	    
-	    //skapar "v�gar"
+	    //skapar "vägar"
 	    //Longdoors
 	    longdoors.setNext("left", tspawn);
 	    longdoors.setNext("forward", along);
@@ -62,7 +77,7 @@ public class Game {
 	    bsite.setNext("back", tunnels);
 	    bsite.setNext("right", ctspawn);
 	    
-	    //l�gger till platser i "v�rlden"
+	    //lägger till platser i "världen"
 	    world.add(longdoors);
 	    world.add(tspawn);
 	    world.add(outsidetunnels);
@@ -72,6 +87,21 @@ public class Game {
 	    world.add(asite);
 	    world.add(ctspawn);
 	    world.add(bsite);
+	    
+	    //lägger till väder
+	    weather.add("Sunny");
+	    weather.add("Cloudy");
+	    weather.add("Rainy");
+	    weather.add("Warm");
+	    weather.add("Cold");
+	    weather.add("Windy");
+	    
+	    Outdoor.setWeather(weather);
+	    
+	    //lägger till items
+	    Item glock = new Weapon(1.5, "Glock", 150);
+	    Item ak47 = new Weapon(7, "AK-47", 2700);
+	    
     }
 
     public void run() {
@@ -81,16 +111,18 @@ public class Game {
 	
         System.out.println("Hello comrade! Welcome to the Dust2!\nI'm Vadim. What is your name? My friend.");
         name = keyboard.nextLine();
-        player = new Player(name, world.get(1));
         System.out.println("Hello " + name + ", welcome to this magical world of preposterous terror!\n*a distant explosion*\nComrade " + name + ", you are needed here....\nYou can move around by typing forward/backward/right/left."
         		+ "\nYou will have to learn more commands as you play the game!"
         		+ "\n(Hint: there is a command \"help\").");
+        player = new Player(name, world.get(1));
   
        
-        while (true) {	    
+        while (true) {	  
+        	System.out.println("");
             player.getLocation().describeYourself();
             System.out.println("What do you want to do?");
             command = keyboard.nextLine();
+            System.out.println("");
             player.doCommand(command);
 		
 	}

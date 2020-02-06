@@ -16,7 +16,7 @@ public class Player {
 	public Player(String name, Location position) {
 		this.name = name;
 		this.position = position;
-		//en mängd som innehåller alla platser man besökt
+		//en mÃ¤ngd som innehÃ¥ller alla platser man besÃ¶kt
 		visitedLocations = new HashSet<Location>();
 		visitedLocations.add(position);
 		System.out.println(position.getDescription_long());
@@ -32,9 +32,9 @@ public class Player {
 		return position;
 	}
 	
-	//kollar om man redan besökt platsen
+	//kollar om man redan besÃ¶kt platsen
 	public boolean visited(Location position) {
-		//for-each loop som jämför position med elementen i visitedLocations
+		//for-each loop som jÃ¤mfÃ¶r position med elementen i visitedLocations
 		for (Location element : visitedLocations) {
 			if (position.getName().equals(element.getName())) {
 				return true;
@@ -53,14 +53,16 @@ public class Player {
 	}
 	
 	
-	//låter spelaren byta position via en väg
+	//lÃ¥ter spelaren byta position via en vÃ¤g
 	public void moveTo(String command) {
 		if (getLocation().checkPath(command)) {
 			setLocation(getLocation().getNext(command));
 		}
 	}
 	
-	//vad spelaren kan göra
+	
+	
+	//vad spelaren kan gÃ¶ra
 	public void doCommand(String command) {
 			moveTo(command);
 			if (command.equals("help")) {
