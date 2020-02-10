@@ -8,7 +8,8 @@ public class Game {
     private Scanner keyboard; 
     private ArrayList<Location> world;
     private Player player;
-    private static ArrayList<String> weather;
+    private ArrayList<String> weather;
+    private ArrayList<Item>items;
     
     public Game() {
     	
@@ -99,8 +100,19 @@ public class Game {
 	    Outdoor.setWeather(weather);
 	    
 	    //lägger till items
-	    Item glock = new Weapon(1.5, "Glock", 150);
-	    Item ak47 = new Weapon(7, "AK-47", 2700);
+	    Item knife = new Weapon(0.2, "Knife", 0 , 1);
+	    Item glock = new Weapon(1.5, "Glock", 150, 2);
+	    Item ak47 = new Weapon(7, "AK-47", 2700, 3);
+	    Item thepackage = new Tool(3, "The Package", 99999, 4);
+	    Item kevlar = new WearableItem(8, "Kevlar", 650, 5, 100);
+	    Item helmet = new WearableItem(1, "Helmet", 350, 6, 50);
+	    
+	    items.add(knife);
+	    items.add(glock);
+	    items.add(ak47);
+	    items.add(thepackage);
+	    items.add(kevlar);
+	    items.add(helmet);
 	    
     }
 
@@ -114,7 +126,7 @@ public class Game {
         System.out.println("Hello " + name + ", welcome to this magical world of preposterous terror!\n*a distant explosion*\nComrade " + name + ", you are needed here....\nYou can move around by typing forward/backward/right/left."
         		+ "\nYou will have to learn more commands as you play the game!"
         		+ "\n(Hint: there is a command \"help\").");
-        player = new Player(name, world.get(1));
+        player = new Player(name, world.get(1), items.get(0));
   
        
         while (true) {	  

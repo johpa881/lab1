@@ -28,6 +28,9 @@ public class Outdoor extends Location {
 		for(String mapKey : paths.keySet()) {
 		    System.out.println(mapKey);
 		}
+		if (this.isWinGame()) {
+			System.out.println("This looks lika a good place to deliver the package.(\"deliver\")");
+		}
 	}
 	
 	public static ArrayList<String> getWeather() {

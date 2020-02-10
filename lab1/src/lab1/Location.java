@@ -7,6 +7,7 @@ public abstract class Location {
 	private final String name;
 	private final String description_long;
 	private final String description_short;
+	private boolean winGame = false;
 
 
 	//konstruktor
@@ -35,6 +36,15 @@ public abstract class Location {
 		return description_long;
 	}
 	
+	
+	public boolean isWinGame() {
+		return winGame;
+	}
+
+	public void setWinGame(boolean winGame) {
+		this.winGame = winGame;
+	}
+
 	public abstract void doCommand(String command);
 	
 	//lägger till vägar
