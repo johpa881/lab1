@@ -18,16 +18,13 @@ public abstract class Item {
 		return weight;
 	}
 
-
 	public String getName() {
 		return name;
 	}
 
-
 	public int getPrice() {
 		return price;
 	}
-
 
 	public boolean isEquipped() {
 		return equipped;
@@ -45,14 +42,11 @@ public abstract class Item {
 		this.itemSlot = itemSlot;
 	}
 	
-	
-	
 	public void printYourself() {
 		
 	}
 	
-	public void doCommand() {
-		
-	}
+	public abstract void doCommand(Player player);
+	
 	
 }

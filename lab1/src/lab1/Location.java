@@ -1,6 +1,5 @@
 package lab1;
 
-
 public abstract class Location {
 	
 	//variabler
@@ -8,7 +7,6 @@ public abstract class Location {
 	private final String description_long;
 	private final String description_short;
 	private boolean winGame = false;
-
 
 	//konstruktor
 	public Location(String name, String description_short, String description_long) {

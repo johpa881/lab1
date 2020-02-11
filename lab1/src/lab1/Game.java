@@ -17,6 +17,7 @@ public class Game {
 	    keyboard = new Scanner(System.in);
 	    world = new ArrayList<>();
 	    weather = new ArrayList<String>();
+	    items = new ArrayList<Item>();
 	    
 	    //skapar platser
 	    Location longdoors = new Room("Longdoors", "There's is blood on the walls.","The legendary Loongdors has taken many lives. The shootouts have been of the most horrific ones mankind has ever seen.\nYou hear your friend Vadim" + 
@@ -38,43 +39,33 @@ public class Game {
 	    
 	    Location asite = new Objective("Asite", "This would be a good place to deliver something.","There is boxes with the smell of gasoline, you hear Vadim\n*Slaps top of boxes* This badboy could blow better than a Moscaw glasblower.");
 	    
-	    Location ctspawn = new Room("CTspawn", "This place is cursed.","", 7);
+	    Location ctspawn = new Room("CTspawn", "This place is cursed.","You see footsteps created by the enemy, you are discusted. Only the smell of them brings hate into your heart.", 7);
 	    
-	    Location bsite = new Objective("Bsite", "The rush finally worked.","long description");
-	    
+	    Location bsite = new Objective("Bsite", "The rush finally worked.","The smell of gasoline is in the air. Boxes everywhere that looks flamable.");
 	    
 	    //skapar "vägar"
-	    //Longdoors
 	    longdoors.setNext("left", tspawn);
 	    longdoors.setNext("forward", along);
-	    //Tspawn
 	    tspawn.setNext("right", longdoors);
 	    tspawn.setNext("left", outsidetunnels);
 	    tspawn.setNext("forward", middle);
-	    //Outside tunnels
 	    outsidetunnels.setNext("right", tspawn);
 	    outsidetunnels.setNext("forward", tunnels);
-	    //Long
 	    along.setNext("back", longdoors);
 	    along.setNext("left", middle);
 	    along.setNext("forward", asite);
-	    //Middle
 	    middle.setNext("back", tspawn);
 	    middle.setNext("right", along);
 	    middle.setNext("left", tunnels);
 	    middle.setNext("forward", ctspawn);
-	    //Tunnels
 	    tunnels.setNext("back", outsidetunnels);
 	    tunnels.setNext("right", middle);
 	    tunnels.setNext("forward", bsite);
-	    //Asite
 	    asite.setNext("back", along);
 	    asite.setNext("left", ctspawn);
-	    //CTSpawn
 	    ctspawn.setNext("back", middle);
 	    ctspawn.setNext("right", asite);
 	    ctspawn.setNext("left", bsite);
-	    //Bsite
 	    bsite.setNext("back", tunnels);
 	    bsite.setNext("right", ctspawn);
 	    
@@ -103,9 +94,10 @@ public class Game {
 	    Item knife = new Weapon(0.2, "Knife", 0 , 1);
 	    Item glock = new Weapon(1.5, "Glock", 150, 2);
 	    Item ak47 = new Weapon(7, "AK-47", 2700, 3);
-	    Item thepackage = new Tool(3, "The Package", 99999, 4);
+	    Item thepackage = new Tool(3, "The Package", 99999, 4, "fuck java");
 	    Item kevlar = new WearableItem(8, "Kevlar", 650, 5, 100);
 	    Item helmet = new WearableItem(1, "Helmet", 350, 6, 50);
+
 	    
 	    items.add(knife);
 	    items.add(glock);
@@ -119,16 +111,14 @@ public class Game {
     public void run() {
     	String name;
     	String command;
-    	
 	
         System.out.println("Hello comrade! Welcome to the Dust2!\nI'm Vadim. What is your name? My friend.");
         name = keyboard.nextLine();
         System.out.println("Hello " + name + ", welcome to this magical world of preposterous terror!\n*a distant explosion*\nComrade " + name + ", you are needed here....\nYou can move around by typing forward/backward/right/left."
         		+ "\nYou will have to learn more commands as you play the game!"
         		+ "\n(Hint: there is a command \"help\").");
-        player = new Player(name, world.get(1), items.get(0));
-  
-       
+        player = new Player(name, world.get(1), items.get(3));
+        
         while (true) {	  
         	System.out.println("");
             player.getLocation().describeYourself();

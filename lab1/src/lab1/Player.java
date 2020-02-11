@@ -71,7 +71,6 @@ public class Player {
 		visitedLocations.add(position);
 	}
 	
-	
 	//låter spelaren byta position via en väg
 	public void moveTo(String command) {
 		if (getLocation().checkPath(command)) {
@@ -79,40 +78,29 @@ public class Player {
 		}
 	}
 	
-	
-	
-	public void doCommand(Tool tool) {
-		tool.useTool(this);
-	}
-	
-	public void doCommand(Weapon weapon) {
+	public void showOptions() {
+		System.out.println("Available commands:");
+		position.showOptions();
+		System.out.println("");
 		
+		for(String itemKey : inventory.keySet()) {
+		    System.out.println("use " + itemKey);
+		}
 	}
-	
-	public void doCommand(WearableItem wearableitem) {
-		
-	}
-	
-	public void doCommand(Item item) {
-		System.out.println("Det blev fel");
-	}
+
 	
 	
 	//vad spelaren kan göra
 	public void doCommand(String command) {
 			moveTo(command);
-			if (command.equals("help")) {
-				System.out.println("Available commands:");
-				position.showOptions();
-			}else if (command.equals("deliver")) {
-				
-				doCommand(inventory.get("The Package"));
-				
-				
-				/*
-				for (String itemKey : inventory.keySet()) {
-					inventory.get(itemKey);
-				}*/
+			String[] stringSplit;
+			stringSplit = command.split(" ", 2);
+			if (stringSplit[0].equals("help")) {
+				showOptions();
+			}else if (stringSplit[0].equals("use")) {
+				if (inventory.containsKey(stringSplit[1])) {
+					inventory.get(stringSplit[1]).doCommand(this);
+				}
 			}
 			
 	}
