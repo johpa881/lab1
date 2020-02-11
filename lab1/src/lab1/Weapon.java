@@ -10,4 +10,10 @@ public class Weapon extends Item {
 		System.out.println("You shoot your " + this.getName() + " at nothing.");
 	}
 	
+	@Override
+	public void doCommand(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

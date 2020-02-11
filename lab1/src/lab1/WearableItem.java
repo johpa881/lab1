@@ -13,4 +13,10 @@ public class WearableItem extends Item{
 		System.out.println("You now have " + getName() + " on you.");
 		System.out.println("Your health is now " + player.getHealth());
 	}
+
+	@Override
+	public void doCommand(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
 }
